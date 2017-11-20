@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 
-		<title>Twitter clone</title>
+		<title>Sistema manutenção info</title>
 
 		<!-- jquery -->
 		<script src="js/jquery-2.2.4.min.js"></script>
@@ -16,7 +16,9 @@
 		</script>
 
 		<style>
-		
+		#etec-logo {
+			padding: 10px;
+		}
 
 		</style>
 
@@ -34,7 +36,7 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </button>
-	          <img src="imagens/etec-jga.png" />
+	          <img id="etec-logo" src="imagens/etec-jga.png" />
 	        </div>
 	        
 	        <div id="navbar" class="navbar-collapse collapse">
@@ -73,8 +75,8 @@
 
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
-	        <h1>Bem vindo ao twitter clone</h1>
-	        <p>Veja o que está acontecendo agora...</p>
+	        <h1>Sistema Manutenção</h1>
+	        <p>em construção...</p>
 	      </div>
 
 	      <div class="clearfix"></div>
