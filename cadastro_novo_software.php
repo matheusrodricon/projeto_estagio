@@ -56,9 +56,9 @@
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="local_software">Localização</label>  
+				  <label class="col-md-4 control-label" for="local_software">Arquivo</label>  
 				  <div class="col-md-6">
-				  <input id="local_software" name="local_software" type="text" placeholder="Local do Software" class="form-control input-md" required>
+				  <input id="nome_arquivo" name="nome_arquivo" type="text" placeholder="Nome do Arquivo" class="form-control input-md" required>
 				    
 				  </div>
 				</div>
