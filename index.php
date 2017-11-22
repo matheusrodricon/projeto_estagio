@@ -73,10 +73,16 @@
 
 	    <div class="container">
 
+	    	
+
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
 	        <h1>Sistema Manutenção</h1>
 	        <p>em construção...</p>
+
+	        <p><a class="btn btn-primary btn-lg" href="cadastro_novo_software.php" role="button">Cadastro novo software</a></p>
+
+	        <p><a class="btn btn-info btn-lg" href="softwares_disponiveis.php" role="button">Softwares disponíveis</a></p>
 	      </div>
 
 	      <div class="clearfix"></div>
