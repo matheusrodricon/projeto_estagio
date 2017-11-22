@@ -56,12 +56,23 @@
 
 				<!-- Text input-->
 				<div class="form-group">
-				  <label class="col-md-4 control-label" for="local_software">Arquivo</label>  
+				  <label class="col-md-4 control-label" for="nome_arquivo">Arquivo</label>  
 				  <div class="col-md-6">
-				  <input id="nome_arquivo" name="nome_arquivo" type="text" placeholder="Nome do Arquivo" class="form-control input-md" required>
+				  <input id="nome_arquivo" name="nome_arquivo" type="text" placeholder="Ex: arquivo.exe" class="form-control input-md" required>
 				    
 				  </div>
 				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="nome_imagem">Imagem</label>  
+				  <div class="col-md-6">
+				  <input id="nome_imagem" name="nome_imagem" type="text" placeholder="Ex: imagem.jpg" class="form-control input-md" required>
+				    
+				  </div>
+				</div>
+
+
 
 				<!-- Textarea -->
 				<div class="form-group">

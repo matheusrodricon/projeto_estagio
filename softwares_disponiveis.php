@@ -25,8 +25,10 @@
 			color: blue;
 		}
 
+		
 		.logo-software {
-			max-width : 180px;
+			min-width : 80px;
+			max-width: 100px;
 			float: right;
 		}
 
@@ -61,58 +63,46 @@
 	      	<p>Programas utilizados nos laboratórios de informática.</p>
 	      </div>
 
-	      <div class="panel panel-default">
-			<div class="panel-heading">
-				<h4>Android Studio</h4>
-			</div>
-			<div class="panel-body">
-				<div class="clearfix">
-						<img class="logo-software" src="imagens/android-studio.jpg" />
-					
-						<h5>Android Studio é um ambiente de desenvolvimento integrado para desenvolver para a plataforma Android.</h5>
-			      		<a href="../../softwares/teste.txt" class="download-software" download>
-			      			<span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>  Download
-						</a>
-				</div>
-			</div>
-		  </div>
+		  <?php
+			require_once('db.class.php');
 
+			$objDb = new db();
 
-		  <div class="panel panel-default">
-			<div class="panel-heading">
-				<h3>Astah</h3>
-			</div>
-			<div class="panel-body">
-				<div class="clearfix">
-						<img class="logo-software" src="imagens/astah.png" />
-					
-						<h4>IDE para Modelagem de Dados (UML) criada com Java e de uso fácil e intuitivo.
-</h4>
-			      		<a href="../../softwares/teste.txt" class="download-software" download>
-			      			<span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>  Download
-						</a>
-				</div>
-			</div>
-		  </div>
+			$link = $objDb->connect_mysql();
 
-		  
+			$sql = "SELECT * FROM softwares_disponiveis ORDER BY nome_software ASC";
 
-		  
-	    
-
-
+			if($result = mysqli_query($link, $sql)) {
+				
+				if($result) {
+					while($data = mysqli_fetch_array($result)){
+						echo '<div class="panel panel-default">';
+						echo '<div class="panel-heading">';
+							echo '<h3>'. utf8_encode($data['nome_software']). '</h3>';
+						echo '</div>';
+						echo '<div class="panel-body">';
+							echo '<div class="clearfix">';
+								echo '<img class="logo-software" src="imagens/';
+								echo utf8_encode($data['nome_imagem']) . '" />';
+								
+								echo '<h4>' . utf8_encode($data['descricao_software']) . '</h4>';
+								echo '<a href="../../softwares/' . utf8_encode($data['nome_arquivo']); 
+								echo '" class="download-software" download>';
+								echo	'<span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>  Download </a>';
+							echo '</div>';
+						echo '</div>';
+						echo '</div>';
+					}	
+				}	
+			} else {
+				echo "Erro ao conectar-se ao banco de dados";
+			}
+		?>
 	    </div>
-	      
-	     
-	     
-
-	  	
 	     </div>
-		  
 
 	      <div class="clearfix"></div>
 		</div>
-
 
 	    </div>
 	
