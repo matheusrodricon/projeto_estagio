@@ -80,9 +80,11 @@
 	        <h1>Sistema Manutenção</h1>
 	        <p>em construção...</p>
 
-	        <p><a class="btn btn-primary btn-lg" href="cadastro_novo_software.php" role="button">Cadastro novo software</a></p>
+	        <a class="btn btn-primary btn-lg" href="cadastro_novo_software.php" role="button">Cadastro novo software</a>
 
-	        <p><a class="btn btn-info btn-lg" href="softwares_disponiveis.php" role="button">Softwares disponíveis</a></p>
+	        <a class="btn btn-info btn-lg" href="softwares_disponiveis.php" role="button">Softwares disponíveis</a>
+
+	        <a class="btn btn-default btn-lg" href="tabela_softwares.php" role="button">Tabela Softwares</a>
 	      </div>
 
 	      <div class="clearfix"></div>
