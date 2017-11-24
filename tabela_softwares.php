@@ -29,10 +29,16 @@
 			background-color: #ebf0fa;
 		}
 
-		.opcao_remover, .opcao_remover:hover {
+		.opcao_remover {
 			color: #b32d00;
 		}
 		
+		.opcao_remover:hover {
+			color: #992600;
+		}
+
+
+
 		</style>
 
 	</head>
@@ -79,7 +85,7 @@
 					        echo '<td>'.utf8_encode($data['nome_software']).'</td>';
 					        echo '<td>'.utf8_encode($data['descricao_software']).'</td>';
 
-					        echo '<td><a href=""><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>  Editar </a></td>';
+					        echo '<td><a href="edita_software.php?id='.utf8_encode($data['id_software']).'"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>  Editar </a></td>';
 
 					        echo '<td><a href="" class="opcao_remover"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>  Remover </a></td>';
 					    echo '</tr>';

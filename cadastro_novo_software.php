@@ -87,7 +87,7 @@
 
 	    			if($msg == "sucesso") {
 	    				echo '<div class="alert alert-success">';
-	    				echo 	'<strong>Successo! </strong> Software foi registrado.';
+	    				echo 	'<strong>Sucesso! </strong> Software foi registrado.';
 	    				echo '</div>';	
 	    			}
 
