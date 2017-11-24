@@ -40,29 +40,34 @@
 
 		// CASO O USUÁRIO DESEJA ALTERAR O ARQUIVO DO SOFTWARE
 		if(isset($_FILES['nome_arquivo']) && strlen($_FILES['nome_arquivo']['name']) > 0) {
-			
+			$nome_arquivo_anterior = $nome_arquivo;
+
 			$nome_arquivo =$_FILES['nome_arquivo']['name'];
 			$diretorio = "../softwares/";
 			move_uploaded_file($_FILES['nome_arquivo']['tmp_name'], $diretorio.$nome_arquivo);
 
-			/*
-				ENCONTRAR UMA FORMA DE DELETAR O ARQUIVO ANTERIOR
-			*/
+			/* DELETAR O ARQUIVO ANTERIOR */
+			$file = $diretorio.$nome_arquivo_anterior;
+
+			unlink($file);	
+
 		}
 
 
 
 		// CASO O USUÁRIO DESEJA ALTERAR A IMAGEM DO SOFTWARE
 		if(isset($_FILES['nome_imagem']) && strlen($_FILES['nome_imagem']['name']) > 0) {
+			$nome_imagem_anterior = $nome_imagem;
+
 			$extensao = strtolower(substr($_FILES['nome_imagem']['name'], -4));
 			$nome_imagem = md5(time()) . $extensao;
 			$diretorio = "imagens/";
 			move_uploaded_file($_FILES['nome_imagem']['tmp_name'], $diretorio.$nome_imagem);
 
 
-			/*
-				ENCONTRAR UMA FORMA DE DELETAR A IMAGEM ANTERIOR
-			*/
+			/* DELETAR A IMAGEM ANTERIOR */
+			$file = $diretorio.$nome_imagem_anterior;
+			unlink($file);	
 		}
 
 

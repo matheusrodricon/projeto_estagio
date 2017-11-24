@@ -60,8 +60,8 @@
 	    	<table class="table table-hover">
 	    		<thead>
 	    			<tr>
-	    				<th width="15%">Software</th>
-	    				<th width="65%">Descrição</th>
+	    				<th width="15%">SOFTWARE</th>
+	    				<th width="65%">DESCRIÇÃO</th>
 	    				<th width="10%"></th>
 	    				<th width="10%"></th>
 	    			</tr>
@@ -82,12 +82,22 @@
 				if($result) {
 					while($data = mysqli_fetch_array($result)){
 						echo '<tr>';
-					        echo '<td>'.utf8_encode($data['nome_software']).'</td>';
+					        echo '<td><strong>'.utf8_encode($data['nome_software']).'</strong></td>';
 					        echo '<td>'.utf8_encode($data['descricao_software']).'</td>';
 
 					        echo '<td><a href="edita_software.php?id='.utf8_encode($data['id_software']).'"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>  Editar </a></td>';
 
-					        echo '<td><a href="" class="opcao_remover"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>  Remover </a></td>';
+
+					        if(!isset($_SESSION)) {
+					        	session_start();
+					        } 
+					        
+					        $_SESSION['id_software'] = utf8_encode($data['id_software']);
+
+					        echo '<td>
+					        		<a href="remover_software.php?id='.utf8_encode($data['id_software']).'" class="opcao_remover"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>  Remover
+					        		</a>
+					        	</td>';
 					    echo '</tr>';
 					}	
 				}	
