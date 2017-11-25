@@ -1,13 +1,7 @@
 <?php
-
-if(!isset($_SESSION)) {
-	session_start(); 
-} 
-
-$id_software = $_SESSION['id_software'];
-echo $id_software;
-
-session_destroy();
-
-
+	if(!empty($_POST['check_list'])) {
+	    foreach($_POST['check_list'] as $check) {
+	        echo $check. '<br>';
+	    }
+	}
 ?>

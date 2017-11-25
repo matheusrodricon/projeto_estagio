@@ -7,12 +7,69 @@
 
 		<!-- jquery -->
 		<script src="js/jquery-2.2.4.min.js"></script>
+			
+		<!-- jquery ui -->
+		<link rel="stylesheet" href="css/jquery-ui.min.css">
+  		<script src="js/jquery-ui.min.js"></script>
 
-		<!-- bootstrap -->
+  		<!-- bootstrap -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 	
 		<script>
-			// código javascript						
+		 $( function() {
+		    $("#dialog").dialog({
+		     autoOpen: false,
+		     minWidth: 450,
+		     modal: true,
+		     buttons : {
+		          "Excluir todos os itens" : function() {
+		              $('#form_delete').submit();            
+		          },
+		          "Cancelar" : function() {
+		            $(this).dialog("close");
+		          }
+		        }
+		      });
+
+		  $("#callConfirm").on("click", function(e) {
+		      e.preventDefault();
+		      $("#dialog").dialog("open");
+		  });
+	  	});
+		</script>
+
+		<script>
+		$(document).ready(function(){
+
+			$delete_button = $('#callConfirm'); 
+			$checkbox = $('input[type=checkbox]');
+
+	   		$checkbox.on('click', function(){
+	   			$linha_selecionada = $(this.closest("td")).parent(); 	
+
+	   			$delete_button.prop('disabled', true);
+
+	   			if(this.checked === true) {
+	   				$linha_selecionada.css('background-color', '#ffe6e6');
+	   			} else {
+	   				$linha_selecionada.removeAttr("style");
+	   			}
+
+	   			$checkbox.each(function() {
+	   				if(this.checked === true) {
+	   					$delete_button.removeAttr("disabled");
+	   				}
+	   			});
+	   		});
+
+	   		
+	   		// ADICIONAR CLASSE CORRETA PARA O BOTÃO CLOSE
+	   		$close_btn = $('.ui-dialog-titlebar-close');
+	   		$close_btn.removeClass().addClass('ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close');
+	   		$close_btn.attr("title", "Close");
+	   		$close_btn.append('<span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>Close');
+			
+		});
 		</script>
 
 		<style>
@@ -28,16 +85,6 @@
 		.table-hover tbody tr:hover {
 			background-color: #ebf0fa;
 		}
-
-		.opcao_remover {
-			color: #b32d00;
-		}
-		
-		.opcao_remover:hover {
-			color: #992600;
-		}
-
-
 
 		</style>
 
@@ -57,60 +104,63 @@
 
 	    <div class="container">
 
-	    	<table class="table table-hover">
-	    		<thead>
-	    			<tr>
-	    				<th width="15%">SOFTWARE</th>
-	    				<th width="65%">DESCRIÇÃO</th>
-	    				<th width="10%"></th>
-	    				<th width="10%"></th>
-	    			</tr>
-	    		</thead>
+	    	<form id="form_delete" action="remover_software.php" method="POST">
+		    	<table class="table table-hover">
+		    		<thead>
+		    			<tr>
+		    				<th width="15%">SOFTWARE</th>
+		    				<th width="70%">DESCRIÇÃO</th>
+		    				<th width="10%"></th>
+		    				<th width="5%"></th>
+		    			</tr>
+		    		</thead>
 
-	    		<tbody>
-		  <?php
-			require_once('db.class.php');
+		    		<tbody>
+			  <?php
+				require_once('db.class.php');
 
-			$objDb = new db();
+				$objDb = new db();
 
-			$link = $objDb->connect_mysql();
+				$link = $objDb->connect_mysql();
 
-			$sql = "SELECT * FROM softwares_disponiveis ORDER BY nome_software ASC";
+				$sql = "SELECT * FROM softwares_disponiveis ORDER BY nome_software ASC";
 
-			if($result = mysqli_query($link, $sql)) {
-				
-				if($result) {
-					while($data = mysqli_fetch_array($result)){
-						echo '<tr>';
-					        echo '<td><strong>'.utf8_encode($data['nome_software']).'</strong></td>';
-					        echo '<td>'.utf8_encode($data['descricao_software']).'</td>';
+				if($result = mysqli_query($link, $sql)) {
+					
+					if($result) {
+						while($data = mysqli_fetch_array($result)){
+							echo '<tr>';
+						        echo '<td><strong>'.utf8_encode($data['nome_software']).'</strong></td>';
+						        echo '<td>'.utf8_encode($data['descricao_software']).'</td>';
 
-					        echo '<td><a href="edita_software.php?id='.utf8_encode($data['id_software']).'"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>  Editar </a></td>';
+						        echo '<td><a href="edita_software.php?id='.utf8_encode($data['id_software']).'"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>  Editar </a></td>';
 
-
-					        if(!isset($_SESSION)) {
-					        	session_start();
-					        } 
-					        
-					        $_SESSION['id_software'] = utf8_encode($data['id_software']);
-
-					        echo '<td>
-					        		<a href="remover_software.php?id='.utf8_encode($data['id_software']).'" class="opcao_remover"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>  Remover
-					        		</a>
-					        	</td>';
-					    echo '</tr>';
+						        echo '<td>
+						        		<input type="checkbox" name="check_list[]"
+						        		value="'.utf8_encode($data['id_software']).'">
+						        	</td>';
+						    echo '</tr>';
+						}	
 					}	
-				}	
-			} else {
-				echo "Erro ao conectar-se ao banco de dados";
-			}
-		?>
-				</tbody>
-	    	</table>
+				} else {
+					echo "Erro ao conectar-se ao banco de dados";
+				}
+			?>
+					</tbody>
+		    	</table>
+
+		    	<button class="btn btn-danger pull-right" id="callConfirm" disabled>Excluir itens</button>
+
+		    </form> <!-- fim do form-->
+
+		    <div id="dialog" title="Confirma exclusão">
+			  Você está certo disto?
+			</div>
+
 	    </div>
 	     </div>
 
-	      <div class="clearfix"></div>
+	      
 		</div>
 
 	    </div>
