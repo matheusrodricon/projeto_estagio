@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Nov-2017 às 16:46
--- Versão do servidor: 10.1.28-MariaDB
--- PHP Version: 7.0.25
+-- Generation Time: 25-Nov-2017 às 20:33
+-- Versão do servidor: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -21,6 +19,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `manutencao_sistema`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `softwares_deletados`
+--
+
+CREATE TABLE `softwares_deletados` (
+  `id_software_del` int(11) NOT NULL,
+  `nome_software_del` varchar(120) NOT NULL,
+  `descricao_software_del` text NOT NULL,
+  `nome_arquivo_del` varchar(120) NOT NULL,
+  `nome_imagem_del` varchar(60) NOT NULL,
+  `data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `softwares_deletados`
+--
+
+INSERT INTO `softwares_deletados` (`id_software_del`, `nome_software_del`, `descricao_software_del`, `nome_arquivo_del`, `nome_imagem_del`, `data`) VALUES
+(21, 'Testezão', 'Teste descrição', 'arquivo.exe', 'imagem.jpg', '2017-11-25 17:24:26'),
+(22, 'Testezão', 'Teste descrição', 'arquivo.exe', 'imagem.jpg', '2017-11-25 17:26:52'),
+(23, 'Testezão', 'Teste descrição', 'arquivo.exe', 'imagem.jpg', '2017-11-25 17:26:53');
 
 -- --------------------------------------------------------
 
@@ -53,6 +75,12 @@ INSERT INTO `softwares_disponiveis` (`id_software`, `nome_software`, `descricao_
 --
 
 --
+-- Indexes for table `softwares_deletados`
+--
+ALTER TABLE `softwares_deletados`
+  ADD PRIMARY KEY (`id_software_del`);
+
+--
 -- Indexes for table `softwares_disponiveis`
 --
 ALTER TABLE `softwares_disponiveis`
@@ -63,12 +91,15 @@ ALTER TABLE `softwares_disponiveis`
 --
 
 --
+-- AUTO_INCREMENT for table `softwares_deletados`
+--
+ALTER TABLE `softwares_deletados`
+  MODIFY `id_software_del` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
 -- AUTO_INCREMENT for table `softwares_disponiveis`
 --
 ALTER TABLE `softwares_disponiveis`
   MODIFY `id_software` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

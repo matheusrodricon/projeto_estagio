@@ -68,6 +68,12 @@
 	   		$close_btn.removeClass().addClass('ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close');
 	   		$close_btn.attr("title", "Close");
 	   		$close_btn.append('<span class="ui-button-icon ui-icon ui-icon-closethick"></span><span class="ui-button-icon-space"> </span>Close');
+
+	   		
+	   		// BARRA DE SUCESSO PARA A REMOÇÃO DE ITENS (3000 = 3 SEGUNDOS)
+	   		$("#success-alert").fadeTo(3000, 500).fadeOut(800, function(){
+   				$("#success-alert").fadeOut(800);
+			});
 			
 		});
 		</script>
@@ -103,6 +109,27 @@
 
 
 	    <div class="container">
+
+	    	<?php
+	    		$msg = "sucesso";
+
+	    		if($msg != false) {
+
+	    			if($msg == "sucesso") {
+	    				echo '<div class="alert alert-success alert-dismissable" id="success-alert">';
+	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+	    				echo 	'<strong>Sucesso! </strong> Software foi registrado.';
+	    				echo '</div>';	
+	    			}
+
+	    			if($msg == "erro") {
+	    				echo '<div class="alert alert-danger alert-dismissable">';
+	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+	    				echo 	'<strong>Atenção! </strong> Software não foi registrado. Tente novamente.';
+	    				echo '</div>';	
+	    			}
+	    		}
+	    	?>
 
 	    	<form id="form_delete" action="remover_software.php" method="POST">
 		    	<table class="table table-hover">

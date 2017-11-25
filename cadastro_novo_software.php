@@ -86,13 +86,15 @@
 	    		if($msg != false) {
 
 	    			if($msg == "sucesso") {
-	    				echo '<div class="alert alert-success">';
+	    				echo '<div class="alert alert-success alert-dismissable">';
+	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
 	    				echo 	'<strong>Sucesso! </strong> Software foi registrado.';
 	    				echo '</div>';	
 	    			}
 
 	    			if($msg == "erro") {
-	    				echo '<div class="alert alert-danger">';
+	    				echo '<div class="alert alert-danger alert-dismissable">';
+	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
 	    				echo 	'<strong>Atenção! </strong> Software não foi registrado. Tente novamente.';
 	    				echo '</div>';	
 	    			}
