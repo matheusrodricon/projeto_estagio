@@ -111,7 +111,7 @@
 	    <div class="container">
 
 	    	<?php
-	    		$msg = "sucesso";
+	    		isset($_GET['msg']) ? $msg = $_GET['msg'] : $msg = false;
 
 	    		if($msg != false) {
 

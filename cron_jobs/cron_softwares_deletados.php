@@ -2,26 +2,46 @@
 	set_include_path('C:\xampp\htdocs\projeto_estagio');
 	require_once('db.class.php');
 
-	// PERSISTÊNCIA DOS DADOS NO BD
+	// REMOÇÃO DE DADOS NO BD
 		$objDb = new db();
 
 		$link = $objDb->connect_mysql();
 
-		$nome_software = utf8_decode('Testezão');
-		$descricao_software = utf8_decode('Teste descrição');
-		$nome_arquivo = utf8_decode('arquivo.exe');
-		$nome_imagem = utf8_decode('imagem.jpg');
+		$sql = "SELECT id_software_del, nome_arquivo_del, nome_imagem_del from softwares_deletados WHERE data < (NOW() - INTERVAL 10 MINUTE)";
 		
-		$sql = "INSERT INTO softwares_deletados(nome_software_del, descricao_software_del, nome_arquivo_del, nome_imagem_del) values('$nome_software', '$descricao_software', '$nome_arquivo', '$nome_imagem')";
+		if($result = mysqli_query($link, $sql)) {
+			if($result) {
+				while($data = mysqli_fetch_array($result)){
 
-		if(mysqli_query($link, $sql)) {
-			echo "sucesso";
-		} else {
-			echo "erro";
+					$id_software = utf8_encode($data['id_software_del']);
+					$nome_arquivo = utf8_encode($data['nome_arquivo_del']);
+					$nome_imagem = utf8_encode($data['nome_imagem_del']);
+
+					echo $nome_arquivo;
+					echo "<br>";
+					echo $nome_imagem;
+
+					// DELETAR ARQUIVO DE INSTALAÇÃO DA PASTA SOFTWARES
+					$diretorio = 'C:\xampp\htdocs\softwares\\';
+
+					$file = $diretorio.$nome_arquivo;
+					unlink($file);
+
+
+					// DELETAR IMAGEM DA PASTA IMAGENS
+					$diretorio = 'C:\xampp\htdocs\projeto_estagio\imagens\\';
+					$file = $diretorio.$nome_imagem;
+					unlink($file);
+
+					// DELETAR INFORMAÇÃO DO BD SOFTWARES DELETADOS
+					$sql = "DELETE FROM softwares_deletados WHERE id_software_del = '$id_software'";
+					mysqli_query($link, $sql);
+				}
+			} // fim do if result
+
 		}
-
-		/*
-		DELETE from softwares_deletados WHERE data < (NOW() - INTERVAL 10 MINUTE);
-		*/
-
+		else {
+			echo "Erro ao conectar-se ao banco de dados"; // redirecionar para outra página, talvez??
+		}
+		
 ?>
