@@ -71,7 +71,7 @@
 
 	   		
 	   		// BARRA DE SUCESSO PARA A REMOÇÃO DE ITENS (3000 = 3 SEGUNDOS)
-	   		$("#success-alert").fadeTo(3000, 500).fadeOut(800, function(){
+	   		$("#success-alert").fadeTo(300000, 500).fadeOut(800, function(){
    				$("#success-alert").fadeOut(800);
 			});
 			
@@ -118,7 +118,14 @@
 	    			if($msg == "sucesso") {
 	    				echo '<div class="alert alert-success alert-dismissable" id="success-alert">';
 	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
-	    				echo 	'<strong>Sucesso! </strong> Software foi registrado.';
+	    				echo 	'Software selecionados foram removidos. <a href="recuperar_deletados.php">Desfazer</a>';
+	    				echo '</div>';	
+	    			}
+
+	    			if($msg == "remocao-desfeita") {
+	    				echo '<div class="alert alert-success alert-dismissable" id="success-alert">';
+	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+	    				echo 	'Remoção dos softwares foi desfeita.';
 	    				echo '</div>';	
 	    			}
 
@@ -150,7 +157,8 @@
 
 				$link = $objDb->connect_mysql();
 
-				$sql = "SELECT * FROM softwares_disponiveis ORDER BY nome_software ASC";
+				$sql = "SELECT * FROM softwares_cadastrados WHERE softwares_cadastrados.id_software NOT IN
+		(SELECT softwares_deletados.id_software FROM softwares_deletados) ORDER BY nome_software ASC";
 
 				if($result = mysqli_query($link, $sql)) {
 					

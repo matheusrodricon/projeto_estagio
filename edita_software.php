@@ -10,7 +10,7 @@
 
 	$link = $objDb->connect_mysql();
 
-	$sql = "SELECT * FROM softwares_disponiveis WHERE id_software = '$id_software'";
+	$sql = "SELECT * FROM softwares_cadastrados WHERE id_software = '$id_software'";
 
 	if($result = mysqli_query($link, $sql)) {
 
@@ -75,7 +75,7 @@
 
 		$link = $objDb->connect_mysql();
 
-		$sql = "UPDATE softwares_disponiveis SET nome_software='$nome_software', descricao_software='$descricao_software', nome_imagem='$nome_imagem', nome_arquivo='$nome_arquivo' WHERE id_software = '$id_software'";
+		$sql = "UPDATE softwares_cadastrados SET nome_software='$nome_software', descricao_software='$descricao_software', nome_imagem='$nome_imagem', nome_arquivo='$nome_arquivo' WHERE id_software = '$id_software'";
 
 		if(mysqli_query($link, $sql)) {
 			$nome_software = $_POST['nome_software'];

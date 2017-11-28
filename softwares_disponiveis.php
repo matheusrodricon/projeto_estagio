@@ -70,7 +70,8 @@
 
 			$link = $objDb->connect_mysql();
 
-			$sql = "SELECT * FROM softwares_disponiveis ORDER BY nome_software ASC";
+			$sql = "SELECT * FROM softwares_cadastrados WHERE softwares_cadastrados.id_software NOT IN
+		(SELECT softwares_deletados.id_software FROM softwares_deletados) ORDER BY nome_software ASC";
 
 			if($result = mysqli_query($link, $sql)) {
 				

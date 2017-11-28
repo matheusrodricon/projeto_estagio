@@ -30,7 +30,7 @@
 
 		$link = $objDb->connect_mysql();
 
-		$sql = "INSERT INTO softwares_disponiveis(nome_software, descricao_software, nome_arquivo, nome_imagem) values('$nome_software', '$descricao_software', '$arquivo_instalacao', '$imagem_software')";
+		$sql = "INSERT INTO softwares_cadastrados(nome_software, descricao_software, nome_arquivo, nome_imagem) values('$nome_software', '$descricao_software', '$arquivo_instalacao', '$imagem_software')";
 
 		if(mysqli_query($link, $sql)) {
 			$msg =  "sucesso";

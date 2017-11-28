@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Nov-2017 às 20:33
--- Versão do servidor: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: 28-Nov-2017 às 15:44
+-- Versão do servidor: 10.1.28-MariaDB
+-- PHP Version: 7.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,34 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `softwares_deletados`
+-- Estrutura da tabela `softwares_cadastrados`
 --
 
-CREATE TABLE `softwares_deletados` (
-  `id_software_del` int(11) NOT NULL,
-  `nome_software_del` varchar(120) NOT NULL,
-  `descricao_software_del` text NOT NULL,
-  `nome_arquivo_del` varchar(120) NOT NULL,
-  `nome_imagem_del` varchar(60) NOT NULL,
-  `data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `softwares_deletados`
---
-
-INSERT INTO `softwares_deletados` (`id_software_del`, `nome_software_del`, `descricao_software_del`, `nome_arquivo_del`, `nome_imagem_del`, `data`) VALUES
-(21, 'Testezão', 'Teste descrição', 'arquivo.exe', 'imagem.jpg', '2017-11-25 17:24:26'),
-(22, 'Testezão', 'Teste descrição', 'arquivo.exe', 'imagem.jpg', '2017-11-25 17:26:52'),
-(23, 'Testezão', 'Teste descrição', 'arquivo.exe', 'imagem.jpg', '2017-11-25 17:26:53');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `softwares_disponiveis`
---
-
-CREATE TABLE `softwares_disponiveis` (
+CREATE TABLE `softwares_cadastrados` (
   `id_software` int(11) NOT NULL,
   `nome_software` varchar(120) NOT NULL,
   `descricao_software` text NOT NULL,
@@ -59,47 +37,62 @@ CREATE TABLE `softwares_disponiveis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `softwares_disponiveis`
+-- Extraindo dados da tabela `softwares_cadastrados`
 --
 
-INSERT INTO `softwares_disponiveis` (`id_software`, `nome_software`, `descricao_software`, `nome_arquivo`, `nome_imagem`) VALUES
+INSERT INTO `softwares_cadastrados` (`id_software`, `nome_software`, `descricao_software`, `nome_arquivo`, `nome_imagem`) VALUES
 (1, 'Android Studio', 'Android Studio é um ambiente de desenvolvimento integrado para desenvolver para a plataforma Android. ', 'android-studio-bundle-135.1641136.exe', 'android-studio.jpg'),
 (5, 'Astah', 'IDE para Modelagem de Dados (UML) criada com Java e de uso fácil e intuitivo.', 'astah-community-6_8_0-d254c5-jre-setup.exe', 'astah.png'),
-(6, 'Case Studio', 'Ferramenta para modelagem de dados.', 'CS2_setup.exe', 'case_studio.gif'),
-(9, 'Cisco Packet Tracer', 'O Packet Tracer é um programa educacional gratuito que permite simular uma rede de computadores, através de equipamentos e configurações presente em situações reais.', 'packettracer533.exe', 'packet_tracer.jpg'),
-(10, 'Dev C++', 'Linguagem de programação de alto nível com facilidades para o uso em baixo nível, multiparadigma e de uso geral.', 'Dev-Cpp 64 bits.exe', 'dev_c++.jpg'),
-(11, 'Dia', 'Dia é uma aplicação gratuita/freeware para desenho de diagramas.', 'dia-setup-0.97.2-2.exe', 'dia.jpg');
+(6, 'Case Studio', 'Ferramenta para modelagem de dados.', 'CS2_setup.exe', 'case_studio.gif');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `softwares_deletados`
+--
+
+CREATE TABLE `softwares_deletados` (
+  `id_software` int(11) NOT NULL,
+  `data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `softwares_cadastrados`
+--
+ALTER TABLE `softwares_cadastrados`
+  ADD PRIMARY KEY (`id_software`);
+
+--
 -- Indexes for table `softwares_deletados`
 --
 ALTER TABLE `softwares_deletados`
-  ADD PRIMARY KEY (`id_software_del`);
-
---
--- Indexes for table `softwares_disponiveis`
---
-ALTER TABLE `softwares_disponiveis`
-  ADD PRIMARY KEY (`id_software`);
+  ADD KEY `id_software` (`id_software`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `softwares_deletados`
+-- AUTO_INCREMENT for table `softwares_cadastrados`
+--
+ALTER TABLE `softwares_cadastrados`
+  MODIFY `id_software` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `softwares_deletados`
 --
 ALTER TABLE `softwares_deletados`
-  MODIFY `id_software_del` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
---
--- AUTO_INCREMENT for table `softwares_disponiveis`
---
-ALTER TABLE `softwares_disponiveis`
-  MODIFY `id_software` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  ADD CONSTRAINT `softwares_deletados_ibfk_1` FOREIGN KEY (`id_software`) REFERENCES `softwares_cadastrados` (`id_software`);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
