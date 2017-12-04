@@ -1,4 +1,11 @@
 <?php
+	session_start();
+
+	if(!isset($_SESSION['usuario'])){
+		header('Location: index.php');
+	}
+
+
 	require_once('db.class.php');
 
 	$msg = false;
@@ -56,14 +63,12 @@
 	
 		<script>
 			// código javascript						
+		$(document).ready(function(){
+			$("#cadastro").addClass("active");
+		});
 		</script>
 
 		<style>
-		
-		#etec-logo {
-			padding: 10px;
-		}
-
 		</style>
 
 	</head>
@@ -71,13 +76,7 @@
 	<body>
 
 		<!-- Static navbar -->
-	    <nav class="navbar navbar-default navbar-static-top">
-	      <div class="container">
-	        <a href="index.php">
-	        	<img id="etec-logo" src="imagens/etec-jga.png" />
-	        </a>
-	      </div>
-	    </nav>
+	    <?php include("barra_superior.php") ?>
 
 
 	    <div class="container">
@@ -102,64 +101,69 @@
 	    	?>
 			
 	      <!-- Main component for a primary marketing message or call to action -->
-	      <div class="jumbotron">
-	        <form class="form-horizontal" method="post" action="cadastro_novo_software.php" enctype="multipart/form-data">
-				<fieldset>
+	      
+	      <div class="row">
+	      	<div class="col-md-2">
+	      		<?php include('barra_lateral.php') ?>
+	      	</div>
+	      	<div class="col-md-10">
+	      		<div class="jumbotron">
+			        <form class="form-horizontal" method="post" action="cadastro_novo_software.php" enctype="multipart/form-data">
+						<fieldset>
 
-				<!-- Form Name -->
-				<legend>Cadastro de Software</legend>
+						<!-- Form Name -->
+						<legend>Cadastro de Software</legend>
 
-				<!-- Text input-->
-				<div class="form-group">
-				  <label class="col-md-4 control-label" for="nome_software">Nome</label>  
-				  <div class="col-md-6">
-				  <input id="nome_software" name="nome_software" type="text" placeholder="Nome do Software" class="form-control input-md" required>
-				    
-				  </div>
-				</div>
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="nome_software">Nome</label>  
+						  <div class="col-md-6">
+						  <input id="nome_software" name="nome_software" type="text" placeholder="Nome do Software" class="form-control input-md" required>
+						    
+						  </div>
+						</div>
 
-				<!-- Text input-->
-				<div class="form-group">
-				  <label class="col-md-4 control-label" for="nome_arquivo">Arquivo de instalação</label>  
-				  <div class="col-md-6">
-				  	<input id="nome_arquivo" name="nome_arquivo" type="file" required>
-				  </div>
-				</div>
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="nome_arquivo">Arquivo de instalação</label>  
+						  <div class="col-md-6">
+						  	<input id="nome_arquivo" name="nome_arquivo" type="file" required>
+						  </div>
+						</div>
 
-				<!-- Text input-->
-				<div class="form-group">
-				  <label class="col-md-4 control-label" for="nome_imagem">Imagem</label>  
-				  <div class="col-md-6">
-				  	<input id="nome_imagem" name="nome_imagem" type="file">
-				   </div>
-				</div>
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="nome_imagem">Imagem</label>  
+						  <div class="col-md-6">
+						  	<input id="nome_imagem" name="nome_imagem" type="file">
+						   </div>
+						</div>
 
 
 
-				<!-- Textarea -->
-				<div class="form-group">
-				  <label class="col-md-4 control-label" for="descricao_software">Descrição</label>
-				  <div class="col-md-6">                     
-				    <textarea class="form-control" id="descricao_software" name="descricao_software" required placeholder="Descrição do Software"></textarea>
-				  </div>
-				</div>
+						<!-- Textarea -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="descricao_software">Descrição</label>
+						  <div class="col-md-6">                     
+						    <textarea class="form-control" id="descricao_software" name="descricao_software" required placeholder="Descrição do Software"></textarea>
+						  </div>
+						</div>
 
-				<!-- Button -->
-				<div class="form-group">
-				  <label class="col-md-4 control-label" for="enviar"></label>
-				  <div class="col-md-4">
-				    <button id="enviar" name="enviar" class="btn btn-primary">Cadastrar</button>
-				  </div>
-				</div>
+						<!-- Button -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="enviar"></label>
+						  <div class="col-md-4">
+						    <button id="enviar" name="enviar" class="btn btn-info">Cadastrar</button>
+						  </div>
+						</div>
 
-				</fieldset>
-			</form>
+						</fieldset>
+					</form>
+	      		</div>
+
+	      		<div class="clearfix"></div>
+			</div>
 	      </div>
-
-	      <div class="clearfix"></div>
-		</div>
-
-
 	    </div>
 	
 		<script src="js/bootstrap.min.js"></script>

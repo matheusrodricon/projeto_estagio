@@ -1,3 +1,12 @@
+<?php
+	session_start();
+
+	if(isset($_SESSION['usuario'])){
+		header('Location: inicio_area_restrita.php');
+	}
+
+?>
+
 <!DOCTYPE HTML>
 <html lang="pt-br">
 	<head>
@@ -41,20 +50,22 @@
 	        
 	        <div id="navbar" class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="inscrevase.php">Inscrever-se</a></li>
 	            <li class="">
-	            	<a id="entrar" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Entrar</a>
+	            	<a id="entrar" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+	            	<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+	            	Entrar
+	            	</a>
 					<ul class="dropdown-menu" aria-labelledby="entrar">
 						<div class="col-md-12">
-				    		<p>Você possui uma conta?</h3>
+				    		<p>Área restrita</h3>
 				    		<br />
-							<form method="post" action="" id="formLogin">
+							<form method="post" action="login_area_restrita.php" id="formLogin">
 								<div class="form-group">
-									<input type="text" class="form-control" id="campo_usuario" name="usuario" placeholder="Usuário" />
+									<input type="text" class="form-control" id="campo_usuario" name="usuario" placeholder="Usuário" required/>
 								</div>
 								
 								<div class="form-group">
-									<input type="password" class="form-control red" id="campo_senha" name="senha" placeholder="Senha" />
+									<input type="password" class="form-control red" id="campo_senha" name="senha" placeholder="Senha" required/>
 								</div>
 								
 								<button type="buttom" class="btn btn-primary" id="btn_login">Entrar</button>
@@ -78,13 +89,9 @@
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
 	        <h1>Sistema Manutenção</h1>
-	        <p>em construção...</p>
-
-	        <a class="btn btn-primary btn-lg" href="cadastro_novo_software.php" role="button">Cadastro novo software</a>
-
+	        
 	        <a class="btn btn-info btn-lg" href="softwares_disponiveis.php" role="button">Softwares disponíveis</a>
 
-	        <a class="btn btn-default btn-lg" href="tabela_softwares.php" role="button">Tabela Softwares</a>
 	      </div>
 
 	      <div class="clearfix"></div>

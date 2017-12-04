@@ -1,3 +1,12 @@
+<?php
+	session_start();
+
+	if(!isset($_SESSION['usuario'])){
+		header('Location: index.php');
+	}
+
+?>
+
 <!DOCTYPE HTML>
 <html lang="pt-br">
 	<head>
@@ -74,16 +83,14 @@
 	   		$("#success-alert").fadeTo(300000, 500).fadeOut(800, function(){
    				$("#success-alert").fadeOut(800);
 			});
+
+			$("#listagem").addClass("active");
 			
 		});
 		</script>
 
 		<style>
 		
-		#etec-logo {
-			padding: 10px;
-		}
-
 		.clearfix {
 			overflow: auto;
 		}
@@ -99,18 +106,18 @@
 	<body>
 
 		<!-- Static navbar -->
-	    <nav class="navbar navbar-default navbar-static-top">
-	      <div class="container">
-	        <a href="index.php">
-	        	<img id="etec-logo" src="imagens/etec-jga.png" />
-	        </a>
-	      </div>
-	    </nav>
+	    <?php include("barra_superior.php") ?>
 
 
 	    <div class="container">
+	    	<div class="row">
+	    		<div class="col-md-2">
+	    			
+	    			<?php include('barra_lateral.php') ?>
 
-	    	<?php
+	    		</div>
+	    		<div class="col-md-10">
+				<?php
 	    		isset($_GET['msg']) ? $msg = $_GET['msg'] : $msg = false;
 
 	    		if($msg != false) {
@@ -192,12 +199,15 @@
 			  Você está certo disto?
 			</div>
 
-	    </div>
-	     </div>
 
-	      
-		</div>
 
+
+
+
+	    		</div> <!--fim div col 10-->
+
+	    	</div>
+	    	
 	    </div>
 	
 		<script src="js/bootstrap.min.js"></script>

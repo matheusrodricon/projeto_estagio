@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Nov-2017 às 15:44
+-- Generation Time: 04-Dez-2017 às 16:44
 -- Versão do servidor: 10.1.28-MariaDB
 -- PHP Version: 7.0.25
 
@@ -56,6 +56,24 @@ CREATE TABLE `softwares_deletados` (
   `data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuarios_restrito`
+--
+
+CREATE TABLE `usuarios_restrito` (
+  `usuario` varchar(20) NOT NULL,
+  `senha` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `usuarios_restrito`
+--
+
+INSERT INTO `usuarios_restrito` (`usuario`, `senha`) VALUES
+('manutencao', 'e73f6fc519a024d72f855b254cad1277');
+
 --
 -- Indexes for dumped tables
 --
@@ -73,6 +91,12 @@ ALTER TABLE `softwares_deletados`
   ADD KEY `id_software` (`id_software`);
 
 --
+-- Indexes for table `usuarios_restrito`
+--
+ALTER TABLE `usuarios_restrito`
+  ADD UNIQUE KEY `usuario` (`usuario`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -80,7 +104,7 @@ ALTER TABLE `softwares_deletados`
 -- AUTO_INCREMENT for table `softwares_cadastrados`
 --
 ALTER TABLE `softwares_cadastrados`
-  MODIFY `id_software` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_software` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

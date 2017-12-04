@@ -12,7 +12,19 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 	
 		<script>
-			// código javascript						
+		$(document).ready(function(){
+			$('[data-search]').on('keyup', function() {
+				var searchVal = $(this).val();
+				var filterItems = $('[data-filter-item]');
+
+				if ( searchVal != '' ) {
+					filterItems.addClass('hidden');
+					$('[data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass('hidden');
+				} else {
+					filterItems.removeClass('hidden');
+				}
+			});
+		});					
 		</script>
 
 		<style>
@@ -39,6 +51,7 @@
 		.download-software {
 			font-size: 2rem;
 		}
+
 		
 		</style>
 
@@ -51,6 +64,10 @@
 	      <div class="container">
 	        <a href="index.php">
 	        	<img id="etec-logo" src="imagens/etec-jga.png" />
+	        	<a href="index.php" class="pull-right" style="padding: 15px">
+	        	<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+	        	Home
+	        	</a>
 	        </a>
 	      </div>
 	    </nav>
@@ -61,6 +78,13 @@
 	      <div class="jumbotron">
 	      	<h1>Softwares Disponíveis</h1>
 	      	<p>Programas utilizados nos laboratórios de informática.</p>
+   			
+	      	<div class="input-group pull-right">
+			    <input type="text" class="form-control" placeholder="Procurar" data-search />
+			</div>
+
+
+
 	      </div>
 
 		  <?php
@@ -77,7 +101,7 @@
 				
 				if($result) {
 					while($data = mysqli_fetch_array($result)){
-						echo '<div class="panel panel-default">';
+						echo '<div class="panel panel-default" data-filter-item data-filter-name="'.strtolower(utf8_encode($data['nome_software'])).'">';
 						echo '<div class="panel-heading">';
 							echo '<h3>'. utf8_encode($data['nome_software']). '</h3>';
 						echo '</div>';
