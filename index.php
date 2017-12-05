@@ -84,15 +84,47 @@
 
 	    <div class="container">
 
+	    	<?php 
+	    		isset($_GET['erro']) ? $msg = $_GET['erro'] : $msg = false;
+
+	    		if($msg != false) {
+	    			if($msg == "1") {
+	    				echo '<div class="alert alert-danger alert-dismissable" id="success-alert">';
+	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+	    				echo 	'Usuário e/ou senha incorretos.';
+	    				echo '</div>';	
+	    			}
+	    		}	
+	    	?>
 	    	
 
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
 	        <h1>Sistema Manutenção</h1>
-	        
-	        <a class="btn btn-info btn-lg" href="softwares_disponiveis.php" role="button">Softwares disponíveis</a>
+	        <p>Programas utilizados nos laboratórios de informática</p>
+	        <a class="btn btn-info btn-lg" href="softwares_disponiveis.php" role="button">Softwares para download</a>
 
 	      </div>
+
+			<div class="row">
+				<div class="col-md-4">
+				    <a href="https://signup.microsoft.com/signup?sku=e82ae690-a2d5-4d76-8d30-7c6e01e6022e" class="thumbnail" target="_blank">
+				      <img src="imagens/office.jpg" alt="Microsoft Office" >
+				    </a>
+			  	</div>
+			  	<div class="col-md-4">
+				    <a href="https://etec.onthehub.com" class="thumbnail" target="_blank">
+				      <img src="imagens/dreamspark.jpg" alt="Etec on the hub">
+				    </a>
+			  	</div>
+			  	<div class="col-md-4">
+				    <a href="https://login.microsoftonline.com" class="thumbnail" target="_blank">
+				      <img src="imagens/emailinst.jpg" alt="Email institucional">
+				    </a>
+			  	</div>
+			</div>
+
+
 
 	      <div class="clearfix"></div>
 		</div>
