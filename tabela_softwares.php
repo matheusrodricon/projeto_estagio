@@ -129,6 +129,13 @@
 	    				echo '</div>';	
 	    			}
 
+	    			if($msg == "atualizado") {
+	    				echo '<div class="alert alert-success alert-dismissable" id="success-alert">';
+	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+	    				echo 	'Software foi atualizado.';
+	    				echo '</div>';	
+	    			}
+
 	    			if($msg == "remocao-desfeita") {
 	    				echo '<div class="alert alert-success alert-dismissable" id="success-alert">';
 	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
@@ -137,6 +144,13 @@
 	    			}
 
 	    			if($msg == "erro") {
+	    				echo '<div class="alert alert-danger alert-dismissable">';
+	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
+	    				echo 	'<strong>Atenção! </strong> Software não foi registrado. Tente novamente.';
+	    				echo '</div>';	
+	    			}
+
+	    			if($msg == "erro-atualizacao") {
 	    				echo '<div class="alert alert-danger alert-dismissable">';
 	    				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
 	    				echo 	'<strong>Atenção! </strong> Software não foi registrado. Tente novamente.';

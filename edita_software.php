@@ -81,11 +81,13 @@
 			$nome_software = $_POST['nome_software'];
 			$descricao_software = $_POST['descricao_software'];
 
-			$msg =  "sucesso";
+			$msg =  "atualizado";
+			
 		}
 		else {
-			$msg =  "erro";
+			$msg =  "erro-atualizacao";
 		}
+		header('Location: /projeto_estagio/tabela_softwares.php?msg='.$msg);
 	}
 
 ?>
@@ -120,33 +122,10 @@
 	<body>
 
 		<!-- Static navbar -->
-	    <nav class="navbar navbar-default navbar-static-top">
-	      <div class="container">
-	        <a href="index.php">
-	        	<img id="etec-logo" src="imagens/etec-jga.png" />
-	        </a>
-	      </div>
-	    </nav>
+	     <?php include("barra_superior.php") ?>
 
 
 	    <div class="container">
-
-	    	<?php
-	    		if($msg != false) {
-
-	    			if($msg == "sucesso") {
-	    				echo '<div class="alert alert-success">';
-	    				echo 	'<strong>Sucesso! </strong> Software foi atualizado.';
-	    				echo '</div>';	
-	    			}
-
-	    			if($msg == "erro") {
-	    				echo '<div class="alert alert-danger">';
-	    				echo 	'<strong>Atenção! </strong> Software não foi atualizado. Tente novamente.';
-	    				echo '</div>';	
-	    			}
-	    		}
-	    	?>
 
 	      <!-- Main component for a primary marketing message or call to action -->
 	      <div class="jumbotron">
@@ -198,12 +177,22 @@
 				<div class="form-group">
 				  <label class="col-md-4 control-label" for="enviar"></label>
 				  <div class="col-md-4">
-				    <button id="enviar" name="enviar" class="btn btn-info">Atualizar</button>
+				    <button id="enviar" name="enviar" class="btn btn-info">
+				    <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+				     Atualizar
+					</button>
+				    <a href="tabela_softwares.php" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true" ></span> Cancelar</a>
 				  </div>
 				</div>
 
 				</fieldset>
 			</form>
+
+				    
+			
+			
+
+
 	      </div>
 
 	      <div class="clearfix"></div>

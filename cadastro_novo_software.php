@@ -81,7 +81,16 @@
 
 	    <div class="container">
 
-	    	<?php
+	    	
+	      <!-- Main component for a primary marketing message or call to action -->
+	      
+	      <div class="row">
+	      	<div class="col-md-2">
+	      		<?php include('barra_lateral.php') ?>
+	      	</div>
+	      	<div class="col-md-10">
+
+	      		<?php
 	    		if($msg != false) {
 
 	    			if($msg == "sucesso") {
@@ -98,15 +107,9 @@
 	    				echo '</div>';	
 	    			}
 	    		}
-	    	?>
-			
-	      <!-- Main component for a primary marketing message or call to action -->
-	      
-	      <div class="row">
-	      	<div class="col-md-2">
-	      		<?php include('barra_lateral.php') ?>
-	      	</div>
-	      	<div class="col-md-10">
+	    		?>
+
+
 	      		<div class="jumbotron">
 			        <form class="form-horizontal" method="post" action="cadastro_novo_software.php" enctype="multipart/form-data">
 						<fieldset>
